@@ -9,6 +9,8 @@ namespace WebApiCine.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<Genero, GeneroDto>().ReverseMap();
+            CreateMap<GeneroCreacionDto, Genero>();
+
         }
     }
 }

@@ -45,7 +45,11 @@ namespace WebApiCine.Controllers
             return dto;
         }
 
-
+        [HttpPost]
+        public async Task<ActionResult> Post([FromBody] GeneroCreacionDto creacionDto)
+        {
+            
+        }
 
 
 
