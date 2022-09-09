@@ -28,11 +28,25 @@ namespace WebApiCine.Controllers
             return generos;
         }
 
-
+        [HttpGet]
         public async Task<ActionResult<List<Genero>>> Obtener()
         {
             return await _context.Generos.ToListAsync();    
         }
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<GeneroDto>> Get(int id)
+        {
+            var entidad = await _context.Generos.FirstOrDefaultAsync(x => x.Id == id);
+            if (entidad == null)
+            {
+                return NotFound();
+            }
+            var dto = _mapper.Map<GeneroDto>(entidad);
+            return dto;
+        }
+
+
+
 
 
     }
