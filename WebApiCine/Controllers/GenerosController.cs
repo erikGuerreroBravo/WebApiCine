@@ -27,5 +27,13 @@ namespace WebApiCine.Controllers
             var generos= _mapper.Map<List<GeneroDto>>(entidades);
             return generos;
         }
+
+
+        public async Task<ActionResult<List<Genero>>> Obtener()
+        {
+            return await _context.Generos.ToListAsync();    
+        }
+
+
     }
 }
