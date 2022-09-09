@@ -1,4 +1,6 @@
-﻿Single AutoMapper;
+﻿using AutoMapper;
+using WebApiCine.DTO;
+using WebApiCine.Entidades;
 
 namespace WebApiCine.Helpers
 {
@@ -6,7 +8,7 @@ namespace WebApiCine.Helpers
     {
         public AutoMapperProfiles()
         {
-
+            CreateMap<Genero, GeneroDto>().ReverseMap();
         }
     }
 }
