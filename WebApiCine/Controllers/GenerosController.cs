@@ -33,7 +33,7 @@ namespace WebApiCine.Controllers
         {
             return await _context.Generos.ToListAsync();    
         }
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}", Name="obtenerGenero")]
         public async Task<ActionResult<GeneroDto>> Get(int id)
         {
             var entidad = await _context.Generos.FirstOrDefaultAsync(x => x.Id == id);
