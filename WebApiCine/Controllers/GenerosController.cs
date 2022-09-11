@@ -64,5 +64,19 @@ namespace WebApiCine.Controllers
             return NoContent();
         }
 
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var existe = await _context.Generos.AnyAsync(x => x.Id == id);
+            if (!existe) {
+                return NotFound();
+            }
+            _context.Remove(new Genero() { Id = id });
+            await _context.SaveChangesAsync();
+            return NoContent();
+
+        }
+
     }
 }
