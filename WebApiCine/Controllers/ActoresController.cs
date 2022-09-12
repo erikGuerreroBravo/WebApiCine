@@ -33,6 +33,14 @@ namespace WebApiCine.Controllers
             }
             return this.mapper.Map<ActorDto>(entidad);
         }
+        [HttpPost]
+        public async Task<ActionResult> Post([FromBody] ActorCreacionDto actorCreacionDto) 
+        {
+
+        }
+
+
+
 
     }
 }
