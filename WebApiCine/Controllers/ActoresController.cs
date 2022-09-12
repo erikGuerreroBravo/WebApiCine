@@ -35,7 +35,7 @@ namespace WebApiCine.Controllers
             return this.mapper.Map<ActorDto>(entidad);
         }
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] ActorCreacionDto actorCreacionDto) 
+        public async Task<ActionResult> Post([FromForm] ActorCreacionDto actorCreacionDto) 
         {
             var  actor = mapper.Map<Actor>(actorCreacionDto);
             context.Add(actor);
@@ -44,7 +44,7 @@ namespace WebApiCine.Controllers
             return new CreatedAtRouteResult("obtenerActor", new {id= actor.Id }, actores);
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] ActorCreacionDto actorCreacionDto)
+        public async Task<ActionResult> Put(int id, [FromForm] ActorCreacionDto actorCreacionDto)
         {
             var actor = mapper.Map<Actor>(actorCreacionDto);
             actor.Id = id;
@@ -62,7 +62,7 @@ namespace WebApiCine.Controllers
             {
                 return NotFound();
             }
-            context.Remove(new Genero() { Id = id });
+            context.Remove(new Actor() { Id = id });
             await context.SaveChangesAsync();
             return NoContent();
 
