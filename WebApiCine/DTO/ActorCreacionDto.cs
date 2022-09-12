@@ -11,6 +11,7 @@ namespace WebApiCine.DTO
         public DateTime FechaNacimiento { get; set; }
 
         [SizeImagenValidacion(pesoMaximoMB:4)]
+        [TipoArchivoValidacion(tiposValidos:new string[] { "image/jpeg","image/png","image/gif"})]
         public IFormFile Foto { get; set; }
         
     }
