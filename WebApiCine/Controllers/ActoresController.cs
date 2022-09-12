@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using WebApiCine.DTO;
 
 namespace WebApiCine.Controllers
 {
@@ -15,7 +17,10 @@ namespace WebApiCine.Controllers
             this.context = _context;
             this.mapper = _mapper;
         }
-
-       
+        [HttpGet]
+        public async Task<ActionResult<List<ActorDto>>> Get() {
+            var actores = await this.context.Actores.ToListAsync();
+            return  mapper.Map<List<ActorDto>>(actores);
+        }
     }
 }
