@@ -43,9 +43,16 @@ namespace WebApiCine.Controllers
             var actores = mapper.Map<ActorDto>(actor);
             return new CreatedAtRouteResult("obtenerActor", new {id= actor.Id }, actores);
         }
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Put(int id, [FromBody] ActorCreacionDto actorCreacionDto)
+        {
+            var actor = mapper.Map<Actor>(actorCreacionDto);
+            actor.Id = id;
+            context.Entry(actor).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+            return NoContent();
 
-
-
+        }
 
     }
 }
