@@ -10,9 +10,12 @@ namespace WebApiCine.Validaciones
         {
             this.tiposValidos = tiposValidos;
         }
-        public TipoArchivoValidacion()
+        public TipoArchivoValidacion(GrupoTipoArchivo grupoTipoArchivo)
         {
-
+            if (grupoTipoArchivo == GrupoTipoArchivo.Imagen) 
+            {
+                tiposValidos = new string[] { "image/jpeg", "image/png", "image/gif" };
+            }
         }
 
 
