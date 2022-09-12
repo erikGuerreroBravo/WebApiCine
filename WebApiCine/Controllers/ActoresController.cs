@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApiCine.DTO;
+using WebApiCine.Entidades;
 
 namespace WebApiCine.Controllers
 {
@@ -36,7 +37,11 @@ namespace WebApiCine.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] ActorCreacionDto actorCreacionDto) 
         {
-
+            var  actor = mapper.Map<Actor>(actorCreacionDto);
+            context.Add(actor);
+            await context.SaveChangesAsync();
+            var actores = mapper.Map<ActorDto>(actor);
+            return new CreatedAtRouteResult("obtenerActor", new {id= actor.Id }, actores);
         }
 
 
