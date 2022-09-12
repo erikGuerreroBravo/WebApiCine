@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WebApiCine.Validaciones;
 
 namespace WebApiCine.DTO
 {
@@ -9,6 +10,7 @@ namespace WebApiCine.DTO
         public string Nombre { get; set; }
         public DateTime FechaNacimiento { get; set; }
 
+        [SizeImagenValidacion(pesoMaximoMB:4)]
         public IFormFile Foto { get; set; }
         
     }
