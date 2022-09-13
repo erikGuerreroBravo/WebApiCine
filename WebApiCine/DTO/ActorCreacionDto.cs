@@ -3,13 +3,9 @@ using WebApiCine.Validaciones;
 
 namespace WebApiCine.DTO
 {
-    public class ActorCreacionDto
+    public class ActorCreacionDto : ActorPatchDto
     {
-        [Required]
-        [StringLength(120)]
-        public string Nombre { get; set; }
-        public DateTime FechaNacimiento { get; set; }
-
+       
         [SizeImagenValidacion(pesoMaximoMB:4)]
         [TipoArchivoValidacion(grupoTipoArchivo: GrupoTipoArchivo.Imagen)]
         public IFormFile Foto { get; set; }
