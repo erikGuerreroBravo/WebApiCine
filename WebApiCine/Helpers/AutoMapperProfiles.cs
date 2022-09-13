@@ -12,6 +12,7 @@ namespace WebApiCine.Helpers
             CreateMap<GeneroCreacionDto, Genero>();
             CreateMap<Actor, ActorDto>().ReverseMap();
             CreateMap<ActorCreacionDto, Actor>();
+            CreateMap<ActorPatchDto, Actor>().ReverseMap();
         }
     }
 }
