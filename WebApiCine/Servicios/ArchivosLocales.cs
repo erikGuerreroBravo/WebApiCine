@@ -1,6 +1,6 @@
 ﻿namespace WebApiCine.Servicios
 {
-    public class ArchivosLocales
+    public class ArchivosLocales : IAlmacenadorArchivos
     {
         public Task BorrarArchivo(string ruta, string contenedor)
         {
