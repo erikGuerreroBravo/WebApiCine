@@ -23,9 +23,10 @@
             }
             return Task.FromResult(0);
         }
-        public Task<string> EditarArchivo(byte[] contenido, string extension, string contenedor, string ruta, string contentType)
+        public async Task<string> EditarArchivo(byte[] contenido, string extension, string contenedor, string ruta, string contentType)
         {
-            return null;
+            await BorrarArchivo(ruta,contenedor);
+            return await GuardarArchivo(contenido,extension,contenedor,contentType);
         }
         public async Task<string> GuardarArchivo(byte[] contenido, string extension, string contenedor, string contentType)
         {
