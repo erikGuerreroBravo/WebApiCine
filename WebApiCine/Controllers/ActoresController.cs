@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+/**cargamos esta libreria desde nugget para trabajar con JsonPatch***/
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApiCine.DTO;
@@ -53,6 +55,38 @@ namespace WebApiCine.Controllers
             return NoContent();
 
         }
+        [HttpPatch("{id}")]
+        public async Task<ActionResult> Patch(int id, [FromBody] JsonPatchDocument<ActorPatchDto> patchDocument)
+        {
+            if (patchDocument == null)
+            {
+                return BadRequest();
+            }
+            var entidadDB = await context.Actores.FirstOrDefaultAsync(x=> x.Id == id);
+            if (entidadDB == null) 
+            {
+                return NotFound();
+            }
+            var entidadDto = mapper.Map<ActorPatchDto>(entidadDB);
+
+            ///aplicamos el patch de la siguiente manera
+            ///pero necesitamos instalar Microsoft.AspNetCore.Mvc.NewtonsoftJson
+            patchDocument.ApplyTo(entidadDto, ModelState);
+            ///validamos que se complan con todos los requisitos y validaciones del modelo.
+            var esValido = TryValidateModel(entidadDto);
+            if (!esValido)
+            {
+                return BadRequest(ModelState);
+            }
+            mapper.Map(entidadDto, entidadDB);
+            await context.SaveChangesAsync();
+            return NoContent();
+
+        }
+
+
+
+
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
