@@ -6,7 +6,7 @@
         {
             return null;    
         }
-        public Task<string> EditarArchivo(byte[] contenido, string extension, string contenedor, string ruta)
+        public Task<string> EditarArchivo(byte[] contenido, string extension, string contenedor, string ruta, string contentType)
         {
             return null;
         }
