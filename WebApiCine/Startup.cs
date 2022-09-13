@@ -24,7 +24,8 @@ namespace WebApiCine
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddControllers();
+            //agregamos newtonSoft como libreria a nuestro pipedLIne
+            services.AddControllers().AddNewtonsoftJson();
             services.AddEndpointsApiExplorer();
 
         }
