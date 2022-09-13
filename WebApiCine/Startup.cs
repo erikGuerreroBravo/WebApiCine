@@ -18,6 +18,8 @@ namespace WebApiCine
             services.AddAutoMapper(typeof(Startup));
 
             services.AddTransient<IAlmacenadorArchivos, ArchivosLocales>();
+            //agregamos la extension para trabajar con todas las peticiones del tipo http.
+            services.AddHttpContextAccessor();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -36,6 +38,9 @@ namespace WebApiCine
             }
 
             app.UseHttpsRedirection();
+
+            //utilizamos esta pipedline para establecer que nuestra api puede retornar o mostrar archivos staticos como imagenes.
+            app.UseStaticFiles();
 
             app.UseRouting();
                         
