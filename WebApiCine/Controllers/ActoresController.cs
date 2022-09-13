@@ -21,7 +21,7 @@ namespace WebApiCine.Controllers
             this.mapper = _mapper;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ActorDto>>> Get() {
+        public async Task<ActionResult<List<ActorDto>>> Get([FromQuery] PaginacionDto paginacionDto) {
             var actores = await this.context.Actores.ToListAsync();
             return mapper.Map<List<ActorDto>>(actores);
         }
