@@ -1,4 +1,7 @@
-﻿namespace WebApiCine
+﻿using Microsoft.EntityFrameworkCore;
+using WebApiCine.Servicios;
+
+namespace WebApiCine
 {
     public class Startup
     {
@@ -13,6 +16,8 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
+
+            services.AddTransient<IAlmacenadorArchivos, ArchivosLocales>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
