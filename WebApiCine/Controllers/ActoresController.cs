@@ -26,8 +26,7 @@ namespace WebApiCine.Controllers
             /*mandamos traer la consulta de todos los actores*/
             var queryable = context.Actores.AsQueryable();
             await HttpContext.InsertarParametrosPaginacion(queryable, paginacionDto.CantidadRegistrosPorPagina);
-
-            var actores = await this.context.Actores.ToListAsync();
+            var actores = await this.context.Actores.Paginar(paginacionDto).ToListAsync();
             return mapper.Map<List<ActorDto>>(actores);
         }
 
