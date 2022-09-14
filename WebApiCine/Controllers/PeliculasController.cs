@@ -25,5 +25,17 @@ namespace WebApiCine.Controllers
             var peliculas = await context.Peliculas.ToListAsync();
             return mapper.Map<List<PeliculaDto>>(peliculas);
         }
+        [HttpGet("{id}", Name = "obtenerPelicula")]
+        public async Task<ActionResult<PeliculaDto>> Get(int id)
+        {
+            var pelicula = await context.Peliculas.FirstOrDefaultAsync(x => x.Id == id);
+            if (pelicula == null)
+            {
+                return NotFound();  
+            }
+            return mapper.Map<PeliculaDto>(pelicula);
+        }
+
+
     }
 }
