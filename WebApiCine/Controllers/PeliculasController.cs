@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using WebApiCine.Servicios;
 
 namespace WebApiCine.Controllers
 {
@@ -9,11 +10,12 @@ namespace WebApiCine.Controllers
     {
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
-        public PeliculasController(ApplicationDbContext _context, IMapper _mapper)
+        private readonly IAlmacenadorArchivos almacenadorArchivos;
+        public PeliculasController(ApplicationDbContext _context, IMapper _mapper, IAlmacenadorArchivos _almacenadorArchivos)
         {
             this.context = _context;
             this.mapper = _mapper;
-
+            this.almacenadorArchivos = _almacenadorArchivos;
         }
 
 
