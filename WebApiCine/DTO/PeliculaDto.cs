@@ -1,4 +1,6 @@
-﻿namespace WebApiCine.DTO
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebApiCine.DTO
 {
     public class PeliculaDto
     {
