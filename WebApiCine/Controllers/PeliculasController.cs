@@ -61,7 +61,7 @@ namespace WebApiCine.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> Put([FromForm] PeliculaCreacionDto)
+        public async Task<ActionResult> Put([FromForm] PeliculaCreacionDto peliculaCreacionDto)
         {
             
         }

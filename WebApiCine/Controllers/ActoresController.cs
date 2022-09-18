@@ -52,6 +52,9 @@ namespace WebApiCine.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(int id, [FromForm] ActorCreacionDto actorCreacionDto)
         {
+            var actorDB =  await context.Actores.FirstOrDefaultAsync(x=>x.Id ==id);
+            if(actorDB == null) { return NotFound(); }
+
             var actor = mapper.Map<Actor>(actorCreacionDto);
             actor.Id = id;
             context.Entry(actor).State = EntityState.Modified;
