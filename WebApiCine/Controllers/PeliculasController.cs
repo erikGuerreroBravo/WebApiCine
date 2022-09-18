@@ -40,7 +40,7 @@ namespace WebApiCine.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(PeliculaCreacionDto peliculaCreacionDto)
+        public async Task<ActionResult> Post([FromForm] PeliculaCreacionDto peliculaCreacionDto)
         {
             var pelicula = mapper.Map<Pelicula>(peliculaCreacionDto);
             if (peliculaCreacionDto.Poster != null)
@@ -52,11 +52,12 @@ namespace WebApiCine.Controllers
                     var extension = Path.GetExtension(peliculaCreacionDto.Poster.FileName);
                     pelicula.Poster = await almacenadorArchivos.GuardarArchivo(contenido, extension, contenedor, peliculaCreacionDto.Poster.ContentType);
                 }
-                context.Add(pelicula);
-                await context.SaveChangesAsync();
-                var peliculaDto = mapper.Map<PeliculaDto>(pelicula);
-                return new CreatedAtRouteResult("obtenerPelicula", new { id = pelicula.Id }, peliculaDto);
+                
             }
+            context.Add(pelicula);
+            await context.SaveChangesAsync();
+            var peliculaDto = mapper.Map<PeliculaDto>(pelicula);
+            return new CreatedAtRouteResult("obtenerPelicula", new { id = pelicula.Id }, peliculaDto);
         }
 
     }
