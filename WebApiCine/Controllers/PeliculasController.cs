@@ -14,6 +14,8 @@ namespace WebApiCine.Controllers
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
         private readonly IAlmacenadorArchivos almacenadorArchivos;
+        //creacion del contenedor o carpeta de archivos donde se va a almacenar las fotos
+        private readonly string contenedor = "peliculas";
         public PeliculasController(ApplicationDbContext _context, IMapper _mapper, IAlmacenadorArchivos _almacenadorArchivos)
         {
             this.context = _context;
@@ -48,6 +50,7 @@ namespace WebApiCine.Controllers
                     await peliculaCreacionDto.Poster.CopyToAsync(memoryStream);
                     var contenido = memoryStream.ToArray();
                     var extension = Path.GetExtension(peliculaCreacionDto.Poster.FileName);
+                    pelicula.Poster = await almacenadorArchivos.GuardarArchivo(contenido, extension, contenedor, peliculaCreacionDto.Poster.ContentType);
                 }
             }
         }
