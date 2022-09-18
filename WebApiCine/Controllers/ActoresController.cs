@@ -88,10 +88,6 @@ namespace WebApiCine.Controllers
 
         }
 
-
-
-
-
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

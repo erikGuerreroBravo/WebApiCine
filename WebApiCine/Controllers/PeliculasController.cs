@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApiCine.DTO;
+using WebApiCine.Entidades;
 using WebApiCine.Servicios;
 
 namespace WebApiCine.Controllers
@@ -38,8 +39,12 @@ namespace WebApiCine.Controllers
 
         [HttpPost]
         public async Task<ActionResult> Post(PeliculaCreacionDto peliculaCreacionDto)
-        { 
-            
+        {
+            var pelicula = mapper.Map<Pelicula>(peliculaCreacionDto);
+            if (peliculaCreacionDto.Poster != null)
+            {
+                
+            }
         }
 
     }
