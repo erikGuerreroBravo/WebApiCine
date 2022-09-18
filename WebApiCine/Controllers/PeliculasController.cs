@@ -84,5 +84,20 @@ namespace WebApiCine.Controllers
 
         }
 
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var existencia = await context.Peliculas.AnyAsync(x => x.Id == id);
+            if (!existencia)
+            {
+                return NotFound();
+            }
+            context.Remove(new Pelicula() { Id = id });
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
+
+
     }
 }
