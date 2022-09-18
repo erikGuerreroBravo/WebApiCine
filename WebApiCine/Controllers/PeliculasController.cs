@@ -36,6 +36,11 @@ namespace WebApiCine.Controllers
             return mapper.Map<PeliculaDto>(pelicula);
         }
 
+        [HttpPost]
+        public async Task<ActionResult> Post(PeliculaCreacionDto peliculaCreacionDto)
+        { 
+            
+        }
 
     }
 }
