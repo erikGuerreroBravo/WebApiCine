@@ -43,7 +43,12 @@ namespace WebApiCine.Controllers
             var pelicula = mapper.Map<Pelicula>(peliculaCreacionDto);
             if (peliculaCreacionDto.Poster != null)
             {
-                
+                using (var memoryStream = new MemoryStream())
+                {
+                    await peliculaCreacionDto.Poster.CopyToAsync(memoryStream);
+                    var contenido = memoryStream.ToArray();
+                    var extension = Path.GetExtension(peliculaCreacionDto.Poster.FileName);
+                }
             }
         }
 
