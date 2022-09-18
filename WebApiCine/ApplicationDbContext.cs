@@ -9,6 +9,16 @@ namespace WebApiCine
         {
 
         }
+        /// <summary>
+        /// utilizamos la API Fluent para que podamos establecer las llaves entre las tablas de muchos a muchos
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PeliculasActores>().HasKey(x => new { x.ActorId, x.PeliculasId });
+        }
+
+
 
         public DbSet<Genero> Generos { get; set; }
         public DbSet<Actor> Actores { get; set; }
