@@ -13,6 +13,11 @@ namespace WebApiCine.Helpers
             CreateMap<Actor, ActorDto>().ReverseMap();
             CreateMap<ActorCreacionDto, Actor>().ForMember(x=>x.Foto , options => options.Ignore());
             CreateMap<ActorPatchDto, Actor>().ReverseMap();
+
+            CreateMap<Pelicula,PeliculaDto>().ReverseMap();
+            CreateMap<PeliculaCreacionDto, Pelicula>().ForMember(x => x.Poster, options => options.Ignore());
+            CreateMap<PeliculaPatchDto,Pelicula>().ReverseMap();    
+
         }
     }
 }
