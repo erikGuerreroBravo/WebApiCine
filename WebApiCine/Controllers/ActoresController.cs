@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApiCine.DTO;
 using WebApiCine.Entidades;
 using WebApiCine.Helpers;
+using WebApiCine.Servicios;
 
 namespace WebApiCine.Controllers
 {
@@ -15,11 +16,13 @@ namespace WebApiCine.Controllers
     {
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
-
-        public ActoresController(ApplicationDbContext _context, IMapper _mapper)
+        private readonly IAlmacenadorArchivos almacenadorArchivos;
+        private readonly string contenedor = "actores";
+        public ActoresController(ApplicationDbContext _context, IMapper _mapper, IAlmacenadorArchivos _almacenadorArchivos)
         {
             this.context = _context;
             this.mapper = _mapper;
+            this.almacenadorArchivos = _almacenadorArchivos;
         }
         [HttpGet]
         public async Task<ActionResult<List<ActorDto>>> Get([FromQuery] PaginacionDto paginacionDto) {
@@ -59,7 +62,11 @@ namespace WebApiCine.Controllers
             {
                 using (var memoryStream = new MemoryStream())
                 {
-                    
+                    await actorCreacionDto.Foto.CopyToAsync(memoryStream);
+                    var contenido = memoryStream.ToArray();
+                    var extension = Path.GetExtension(actorCreacionDto.Foto.FileName);
+                    actorDB.Foto = await almacenadorArchivos.EditarArchivo(contenido,extension,contenedor, actorDB.Foto, 
+                        actorCreacionDto.Foto.ContentType);
                 }
             }    
 
