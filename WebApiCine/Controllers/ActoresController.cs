@@ -54,6 +54,14 @@ namespace WebApiCine.Controllers
         {
             var actorDB =  await context.Actores.FirstOrDefaultAsync(x=>x.Id ==id);
             if(actorDB == null) { return NotFound(); }
+            actorDB = mapper.Map(actorCreacionDto,actorDB);
+            if (actorCreacionDto.Foto != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    
+                }
+            }    
 
             var actor = mapper.Map<Actor>(actorCreacionDto);
             actor.Id = id;
