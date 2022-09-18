@@ -66,16 +66,16 @@ namespace WebApiCine.Controllers
             var peliculaDB = await context.Actores.FirstOrDefaultAsync(x => x.Id == id);
             if (peliculaDB == null) { return NotFound(); }
 
-            peliculaDB = mapper.Map(actorCreacionDto, peliculaDB);
-            if (actorCreacionDto.Foto != null)
+            peliculaDB = mapper.Map(peliculaCreacionDto, peliculaDB);
+            if (peliculaCreacionDto.Poster != null)
             {
                 using (var memoryStream = new MemoryStream())
                 {
-                    await actorCreacionDto.Foto.CopyToAsync(memoryStream);
+                    await peliculaCreacionDto.Poster.CopyToAsync(memoryStream);
                     var contenido = memoryStream.ToArray();
-                    var extension = Path.GetExtension(actorCreacionDto.Foto.FileName);
+                    var extension = Path.GetExtension(peliculaCreacionDto.Poster.FileName);
                     peliculaDB.Foto = await almacenadorArchivos.EditarArchivo(contenido, extension, contenedor, peliculaDB.Foto,
-                        actorCreacionDto.Foto.ContentType);
+                        peliculaCreacionDto.Poster.ContentType);
                 }
             }
             await context.SaveChangesAsync();
