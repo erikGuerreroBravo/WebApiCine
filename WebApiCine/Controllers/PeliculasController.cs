@@ -84,6 +84,10 @@ namespace WebApiCine.Controllers
 
         }
 
+        [HttpPatch("{id}")]
+        public async Task<ActionResult> Patch(int id, [FromBody] JsonPatchDocument<PeliculaPatchDto>)
+
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult> Delete(int id)
