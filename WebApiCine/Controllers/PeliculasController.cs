@@ -63,7 +63,25 @@ namespace WebApiCine.Controllers
         [HttpPut]
         public async Task<ActionResult> Put([FromForm] PeliculaCreacionDto peliculaCreacionDto)
         {
-            
+            var peliculaDB = await context.Actores.FirstOrDefaultAsync(x => x.Id == id);
+            if (peliculaDB == null) { return NotFound(); }
+
+            peliculaDB = mapper.Map(actorCreacionDto, peliculaDB);
+            if (actorCreacionDto.Foto != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await actorCreacionDto.Foto.CopyToAsync(memoryStream);
+                    var contenido = memoryStream.ToArray();
+                    var extension = Path.GetExtension(actorCreacionDto.Foto.FileName);
+                    peliculaDB.Foto = await almacenadorArchivos.EditarArchivo(contenido, extension, contenedor, peliculaDB.Foto,
+                        actorCreacionDto.Foto.ContentType);
+                }
+            }
+            await context.SaveChangesAsync();
+            return NoContent();
+
+
         }
 
     }
