@@ -68,13 +68,15 @@ namespace WebApiCine.Controllers
                     actorDB.Foto = await almacenadorArchivos.EditarArchivo(contenido,extension,contenedor, actorDB.Foto, 
                         actorCreacionDto.Foto.ContentType);
                 }
-            }    
-
-            var actor = mapper.Map<Actor>(actorCreacionDto);
-            actor.Id = id;
-            context.Entry(actor).State = EntityState.Modified;
+            }
             await context.SaveChangesAsync();
             return NoContent();
+
+            //var actor = mapper.Map<Actor>(actorCreacionDto);
+            //actor.Id = id;
+            //context.Entry(actor).State = EntityState.Modified;
+            //await context.SaveChangesAsync();
+            //return NoContent();
 
         }
         [HttpPatch("{id}")]
