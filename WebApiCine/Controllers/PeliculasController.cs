@@ -60,8 +60,8 @@ namespace WebApiCine.Controllers
             return new CreatedAtRouteResult("obtenerPelicula", new { id = pelicula.Id }, peliculaDto);
         }
 
-        [HttpPut]
-        public async Task<ActionResult> Put([FromForm] PeliculaCreacionDto peliculaCreacionDto)
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Put(int id,[FromForm] PeliculaCreacionDto peliculaCreacionDto)
         {
             var peliculaDB = await context.Actores.FirstOrDefaultAsync(x => x.Id == id);
             if (peliculaDB == null) { return NotFound(); }
