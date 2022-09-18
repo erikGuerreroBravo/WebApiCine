@@ -15,7 +15,11 @@ namespace WebApiCine
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //establecemos las llaves entre las tablas de muchos a muchos
             modelBuilder.Entity<PeliculasActores>().HasKey(x => new { x.ActorId, x.PeliculasId });
+            //establecemos 
+            modelBuilder.Entity<PeliculasGeneros>().HasKey(x => new { x.GeneroId, x.PeliculaId });
+            base.OnModelCreating(modelBuilder); 
         }
 
 
