@@ -60,5 +60,11 @@ namespace WebApiCine.Controllers
             return new CreatedAtRouteResult("obtenerPelicula", new { id = pelicula.Id }, peliculaDto);
         }
 
+        [HttpPut]
+        public async Task<ActionResult> Put([FromForm] PeliculaCreacionDto)
+        {
+            
+        }
+
     }
 }
