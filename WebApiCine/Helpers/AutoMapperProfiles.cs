@@ -17,10 +17,27 @@ namespace WebApiCine.Helpers
             CreateMap<Pelicula,PeliculaDto>().ReverseMap();
             CreateMap<PeliculaCreacionDto, Pelicula>()
                 .ForMember(x => x.Poster, options => options.Ignore())
-                .ForMember(x => x.PeliculasGeneros, options => options.MapFrom(MapPeliculasGeneros);
+                .ForMember(x => x.PeliculasGeneros, options => options.MapFrom(MapPeliculasGeneros))
+                .ForMember(x=> x.PeliculasActores, options => options.MapFrom(MapPeliculasActores));
             CreateMap<PeliculaPatchDto,Pelicula>().ReverseMap();    
 
         }
+
+        private List<PeliculasActores> MapPeliculasActores(PeliculaCreacionDto peliculaCreacionDto, Pelicula pelicula)
+        {
+            var resultado = new List<PeliculasActores>();
+            if (peliculaCreacionDto.Actores == null)
+            {
+                return resultado;
+            }
+            foreach (var actor in peliculaCreacionDto.Actores)
+            {
+                resultado.Add(new PeliculasActores() { ActorId = actor.ActorId, Personaje = actor.Personaje });
+            }
+            return resultado;
+
+        }
+
 
         private List<PeliculasGeneros> MapPeliculasGeneros(PeliculaCreacionDto peliculaCreacionDto, Pelicula pelicula)
         {
