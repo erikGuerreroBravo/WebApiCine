@@ -16,7 +16,7 @@ namespace WebApiCine.Helpers
             }
             try
             {
-                var valorDeserializado = JsonConvert.DeserializeObject<List<int>>(proveedorDeValores.FirstValue);
+                var valorDeserializado = JsonConvert.DeserializeObject<T>(proveedorDeValores.FirstValue);
                 bindingContext.Result = ModelBindingResult.Success(valorDeserializado);
             }
             catch (Exception)

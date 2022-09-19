@@ -13,9 +13,9 @@ namespace WebApiCine.DTO
         public IFormFile Poster { get; set; }
         //es necesario utilizar un modelBinder para poder bindear todas las propiedades dentro del modelo 
         //Ids Asociados de los generos a las peliculas
-        [ModelBinder(BinderType = typeof(TypeBinder))]
+        [ModelBinder(BinderType = typeof(TypeBinder<List<int>>))]
         public List<int> GenerosIds { get; set; }
-
+        [ModelBinder(BinderType =typeof(TypeBinder<List<ActorPeliculasCreacionDto>>))]
         public List<ActorPeliculasCreacionDto> Actores { get; set; }
 
 
