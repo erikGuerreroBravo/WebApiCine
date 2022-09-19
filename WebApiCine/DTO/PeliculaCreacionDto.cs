@@ -16,6 +16,8 @@ namespace WebApiCine.DTO
         [ModelBinder(BinderType = typeof(TypeBinder))]
         public List<int> GenerosIds { get; set; }
 
+        public List<ActorPeliculasCreacionDto> Actores { get; set; }
+
 
     }
 }
