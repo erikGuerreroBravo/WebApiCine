@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace WebApiCine.Helpers
 {
-    public class TypeBinder : IModelBinder
+    public class TypeBinder<T> : IModelBinder
     {
         public Task BindModelAsync(ModelBindingContext bindingContext)
         {
