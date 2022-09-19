@@ -55,6 +55,7 @@ namespace WebApiCine.Controllers
                 }
                 
             }
+            AsignacionActores(pelicula);
             context.Add(pelicula);
             await context.SaveChangesAsync();
             var peliculaDto = mapper.Map<PeliculaDto>(pelicula);
@@ -122,6 +123,20 @@ namespace WebApiCine.Controllers
             await context.SaveChangesAsync();
             return NoContent();
         }
+
+
+        private void AsignacionActores(Pelicula pelicula)
+        {
+            if (pelicula.PeliculasActores != null)
+            {
+                for (int i = 0; i < pelicula.PeliculasActores.Count; i++)
+                {
+                    pelicula.PeliculasActores[i].Orden = i;
+                }
+            }
+        }
+
+
 
 
     }
