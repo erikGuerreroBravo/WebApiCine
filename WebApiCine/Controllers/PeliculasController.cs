@@ -65,7 +65,10 @@ namespace WebApiCine.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(int id,[FromForm] PeliculaCreacionDto peliculaCreacionDto)
         {
-            var peliculaDB = await context.Peliculas.FirstOrDefaultAsync(x => x.Id == id);
+            var peliculaDB = await context.Peliculas
+                .Include(x=>x.PeliculasActores)
+                .Include(x=>x.PeliculasGeneros)
+                .FirstOrDefaultAsync(x => x.Id == id);
             if (peliculaDB == null) { return NotFound(); }
 
             peliculaDB = mapper.Map(peliculaCreacionDto, peliculaDB);
@@ -80,6 +83,7 @@ namespace WebApiCine.Controllers
                         peliculaCreacionDto.Poster.ContentType);
                 }
             }
+            AsignacionActores(peliculaDB);
             await context.SaveChangesAsync();
             return NoContent();
 
