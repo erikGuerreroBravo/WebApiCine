@@ -36,7 +36,10 @@ namespace WebApiCine.Controllers
                 .OrderBy(x => x.FechaEstreno)
                 .Take(top)
                 .ToListAsync();
-
+            var enCines = await context.Peliculas
+                                .Where(x => x.EnCines)
+                                .Take(top)
+                                .ToListAsync();
 
             var peliculas = await context.Peliculas.ToListAsync();
             return mapper.Map<List<PeliculaDto>>(peliculas);
