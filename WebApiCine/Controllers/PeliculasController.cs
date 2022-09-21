@@ -109,7 +109,7 @@ namespace WebApiCine.Controllers
             {
                 return BadRequest(ModelState);
             }
-            mapper.Map(peliculaDto,peliculaDB);  
+            mapper.Map(peliculaDto, peliculaDB);  
             await context.SaveChangesAsync();
             return NoContent();
         }
@@ -140,7 +140,7 @@ namespace WebApiCine.Controllers
             }
         }
 
-
+        
 
 
     }
