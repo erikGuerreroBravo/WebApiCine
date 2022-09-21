@@ -61,6 +61,14 @@ namespace WebApiCine.Controllers
             return mapper.Map<PeliculaDto>(pelicula);
         }
 
+        [HttpGet("filtro")]
+        public async Task<ActionResult<List<PeliculaDto>>> Filtrar()
+        {
+            
+        }
+
+
+
         [HttpPost]
         public async Task<ActionResult> Post([FromForm] PeliculaCreacionDto peliculaCreacionDto)
         {
