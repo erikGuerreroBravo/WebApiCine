@@ -24,7 +24,7 @@ namespace WebApiCine.Controllers
             this.almacenadorArchivos = _almacenadorArchivos;
         }
         [HttpGet]
-        public async Task<ActionResult<List<PeliculaDto>>> Get()
+        public async Task<ActionResult<PeliculasIndexDto>> Get()
         {
             //solo 5 peliculas en la consulta
             var top = 5;
