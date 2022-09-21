@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApiCine.DTO;
 using WebApiCine.Entidades;
+using WebApiCine.Helpers;
 using WebApiCine.Servicios;
 
 namespace WebApiCine.Controllers
@@ -85,6 +86,7 @@ namespace WebApiCine.Controllers
                 .Contains(filtroPeliculasDto.GeneroId));
                     
             }
+            await HttpContext.InsertarParametrosPaginacion(peliculasQueryable, filtroPeliculasDto.CantidadRegistrosPorPagina);
 
         }
 
