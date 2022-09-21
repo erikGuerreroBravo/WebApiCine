@@ -64,7 +64,12 @@ namespace WebApiCine.Controllers
         [HttpGet("filtro")]
         public async Task<ActionResult<List<PeliculaDto>>> Filtrar([FromQuery]FiltroPeliculasDto filtroPeliculasDto )
         {
-            
+            ///ejecutamos la ejecucion diferida de la siguiente manera
+            var peliculasQueryable = context.Peliculas.AsQueryable();
+            if (!string.IsNullOrEmpty(filtroPeliculasDto.Titulo))
+            {
+                peliculasQueryable = peliculasQueryable.Where(x => x.Titulo.Contains(filtroPeliculasDto.Titulo));
+            }
         }
 
 
