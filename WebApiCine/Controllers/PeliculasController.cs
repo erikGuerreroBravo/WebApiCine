@@ -40,6 +40,9 @@ namespace WebApiCine.Controllers
                                 .Where(x => x.EnCines)
                                 .Take(top)
                                 .ToListAsync();
+            var resultado = new PeliculasIndexDto();
+            //agregamos los futuros estrenos
+            resultado.FuturosEstrenos = mapper.Map<List<PeliculaDto>>(proximosEstrenos);
 
             var peliculas = await context.Peliculas.ToListAsync();
             return mapper.Map<List<PeliculaDto>>(peliculas);
