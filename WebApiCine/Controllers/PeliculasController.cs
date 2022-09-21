@@ -57,6 +57,8 @@ namespace WebApiCine.Controllers
             var pelicula = await context.Peliculas
                 .Include(x=>x.PeliculasActores)
                 .ThenInclude(x=>x.Actor)
+                .Include(x=> x.PeliculasGeneros)
+                .ThenInclude(x=> x.Genero)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (pelicula == null)
