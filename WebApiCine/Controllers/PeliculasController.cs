@@ -88,6 +88,7 @@ namespace WebApiCine.Controllers
             }
             await HttpContext.InsertarParametrosPaginacion(peliculasQueryable, filtroPeliculasDto.CantidadRegistrosPorPagina);
 
+            var peliculas = await peliculasQueryable.Paginar(filtroPeliculasDto.Paginacion).ToListAsync();
         }
 
 
