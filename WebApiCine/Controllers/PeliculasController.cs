@@ -74,6 +74,11 @@ namespace WebApiCine.Controllers
             {
                 peliculasQueryable = peliculasQueryable.Where(x => x.EnCines);
             }
+            if (filtroPeliculasDto.ProximosEstrenos)
+            {
+                var hoy = DateTime.Today;
+                peliculasQueryable = peliculasQueryable.Where(x => x.FechaEstreno > hoy);
+            }
 
         }
 
