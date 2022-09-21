@@ -45,9 +45,10 @@ namespace WebApiCine.Controllers
             resultado.FuturosEstrenos = mapper.Map<List<PeliculaDto>>(proximosEstrenos);
             //agregamos los estrenos que aun estan en cines
             resultado.EnCines = mapper.Map<List<PeliculaDto>>(enCines);
+            return resultado;
 
-            var peliculas = await context.Peliculas.ToListAsync();
-            return mapper.Map<List<PeliculaDto>>(peliculas);
+            //var peliculas = await context.Peliculas.ToListAsync();
+            //return mapper.Map<List<PeliculaDto>>(peliculas);
         }
         [HttpGet("{id}", Name = "obtenerPelicula")]
         public async Task<ActionResult<PeliculaDto>> Get(int id)
