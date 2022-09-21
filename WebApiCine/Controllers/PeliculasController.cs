@@ -54,7 +54,10 @@ namespace WebApiCine.Controllers
         [HttpGet("{id}", Name = "obtenerPelicula")]
         public async Task<ActionResult<PeliculaDto>> Get(int id)
         {
-            var pelicula = await context.Peliculas.FirstOrDefaultAsync(x => x.Id == id);
+            var pelicula = await context.Peliculas
+                .Include(x=>x.PeliculasActores)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
             if (pelicula == null)
             {
                 return NotFound();  
