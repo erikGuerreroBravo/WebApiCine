@@ -62,7 +62,7 @@ namespace WebApiCine.Controllers
         }
 
         [HttpGet("filtro")]
-        public async Task<ActionResult<List<PeliculaDto>>> Filtrar()
+        public async Task<ActionResult<List<PeliculaDto>>> Filtrar([FromQuery]FiltroPeliculasDto filtroPeliculasDto )
         {
             
         }
