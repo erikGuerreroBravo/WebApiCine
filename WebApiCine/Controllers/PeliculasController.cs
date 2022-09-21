@@ -26,6 +26,18 @@ namespace WebApiCine.Controllers
         [HttpGet]
         public async Task<ActionResult<List<PeliculaDto>>> Get()
         {
+            //solo 5 peliculas en la consulta
+            var top = 5;
+            //fecha del dia actual
+            var hoy = DateTime.Today;
+            //consulta de filtrado por fechas de estreno  y solo traemos los 5 estenos
+            var proximosEstrenos = await context.Peliculas
+                .Where(x => x.FechaEstreno > hoy)
+                .OrderBy(x => x.FechaEstreno)
+                .Take(top)
+                .ToListAsync();
+
+
             var peliculas = await context.Peliculas.ToListAsync();
             return mapper.Map<List<PeliculaDto>>(peliculas);
         }
