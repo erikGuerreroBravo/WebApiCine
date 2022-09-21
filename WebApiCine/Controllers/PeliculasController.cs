@@ -70,6 +70,11 @@ namespace WebApiCine.Controllers
             {
                 peliculasQueryable = peliculasQueryable.Where(x => x.Titulo.Contains(filtroPeliculasDto.Titulo));
             }
+            if (filtroPeliculasDto.EnCines)
+            {
+                peliculasQueryable = peliculasQueryable.Where(x => x.EnCines);
+            }
+
         }
 
 
