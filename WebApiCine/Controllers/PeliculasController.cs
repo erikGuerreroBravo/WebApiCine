@@ -68,7 +68,7 @@ namespace WebApiCine.Controllers
             }
             pelicula.PeliculasActores = pelicula.PeliculasActores.OrderBy(x => x.Orden).ToList();
 
-            return mapper.Map<PeliculaDto>(pelicula);
+            return mapper.Map<PeliculaDetallesDto>(pelicula);
         }
 
         [HttpGet("filtro")]
