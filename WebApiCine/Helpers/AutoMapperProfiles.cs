@@ -56,7 +56,19 @@ namespace WebApiCine.Helpers
 
         private List<GeneroDto> MapPeliculasGeneros(Pelicula pelicula, PeliculaDetallesDto peliculaDetallesDto)
         {
-            
+            var resultado = new List<GeneroDto>();
+            if (pelicula.PeliculasGeneros == null) 
+            {
+                return resultado; 
+            }
+            foreach (var generoPelicula in pelicula.PeliculasGeneros)
+            {
+                resultado.Add(new GeneroDto()
+                {
+                    Id= generoPelicula.GeneroId, Nombre= generoPelicula.Genero.Nombre
+                });
+            }
+
         }
 
 
