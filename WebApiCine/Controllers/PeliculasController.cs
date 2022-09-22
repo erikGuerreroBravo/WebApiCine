@@ -51,8 +51,9 @@ namespace WebApiCine.Controllers
             //var peliculas = await context.Peliculas.ToListAsync();
             //return mapper.Map<List<PeliculaDto>>(peliculas);
         }
+        
         [HttpGet("{id}", Name = "obtenerPelicula")]
-        public async Task<ActionResult<PeliculaDto>> Get(int id)
+        public async Task<ActionResult<PeliculaDetallesDto>> Get(int id)
         {
             var pelicula = await context.Peliculas
                 .Include(x=>x.PeliculasActores)
