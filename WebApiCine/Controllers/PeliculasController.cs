@@ -103,6 +103,9 @@ namespace WebApiCine.Controllers
                     {
                         peliculasQueryable = peliculasQueryable.OrderBy(x => x.Titulo);
                     }
+                    else {
+                        peliculasQueryable = peliculasQueryable.OrderByDescending(x=>x.Titulo);
+                    }
                 }
             }
 
