@@ -95,6 +95,17 @@ namespace WebApiCine.Controllers
                 .Contains(filtroPeliculasDto.GeneroId));
                     
             }
+            if (!string.IsNullOrEmpty(filtroPeliculasDto.CampoOrdenar))
+            {
+                if (filtroPeliculasDto.CampoOrdenar == "titulo")
+                {
+                    if (filtroPeliculasDto.OrdenAscendente)
+                    {
+                        peliculasQueryable = peliculasQueryable.OrderBy(x => x.Titulo);
+                    }
+                }
+            }
+
             await HttpContext.InsertarParametrosPaginacion(peliculasQueryable, filtroPeliculasDto.CantidadRegistrosPorPagina);
 
             var peliculas = await peliculasQueryable.Paginar(filtroPeliculasDto.Paginacion).ToListAsync();

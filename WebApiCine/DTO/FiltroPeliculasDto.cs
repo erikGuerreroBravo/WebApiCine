@@ -19,6 +19,6 @@
 
         public string CampoOrdenar { get; set; }
 
-        public bool OrdenAscendente { get; set; }
+        public bool OrdenAscendente { get; set; }=true;
     }
 }
