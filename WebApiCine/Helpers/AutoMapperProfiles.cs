@@ -25,7 +25,6 @@ namespace WebApiCine.Helpers
             CreateMap<PeliculaPatchDto,Pelicula>().ReverseMap();    
 
         }
-
         private List<PeliculasActores> MapPeliculasActores(PeliculaCreacionDto peliculaCreacionDto, Pelicula pelicula)
         {
             var resultado = new List<PeliculasActores>();
@@ -40,8 +39,6 @@ namespace WebApiCine.Helpers
             return resultado;
 
         }
-
-
         private List<PeliculasGeneros> MapPeliculasGeneros(PeliculaCreacionDto peliculaCreacionDto, Pelicula pelicula)
         {
             var resultado = new List<PeliculasGeneros>();
@@ -57,7 +54,10 @@ namespace WebApiCine.Helpers
 
         }
 
-
+        private List<GeneroDto> MapPeliculasGeneros(Pelicula pelicula, PeliculaDetallesDto peliculaDetallesDto)
+        {
+            
+        }
 
 
     }
