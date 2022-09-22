@@ -66,6 +66,8 @@ namespace WebApiCine.Controllers
             {
                 return NotFound();  
             }
+            pelicula.PeliculasActores = pelicula.PeliculasActores.OrderBy(x => x.Orden).ToList();
+
             return mapper.Map<PeliculaDto>(pelicula);
         }
 
