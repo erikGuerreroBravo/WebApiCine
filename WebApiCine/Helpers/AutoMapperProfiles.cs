@@ -26,6 +26,12 @@ namespace WebApiCine.Helpers
             CreateMap<PeliculaPatchDto,Pelicula>().ReverseMap();    
 
         }
+
+        private List<ActorPeliculaDetalleDto> MapPeliculasActores(Pelicula pelicula, PeliculaDetallesDto peliculaDetallesDto)
+        {
+            
+        }
+
         private List<PeliculasActores> MapPeliculasActores(PeliculaCreacionDto peliculaCreacionDto, Pelicula pelicula)
         {
             var resultado = new List<PeliculasActores>();
