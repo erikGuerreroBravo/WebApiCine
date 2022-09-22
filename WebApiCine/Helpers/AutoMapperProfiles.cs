@@ -29,7 +29,18 @@ namespace WebApiCine.Helpers
 
         private List<ActorPeliculaDetalleDto> MapPeliculasActores(Pelicula pelicula, PeliculaDetallesDto peliculaDetallesDto)
         {
-            
+            var resultado = new List<ActorPeliculaDetalleDto>();
+            if (pelicula.PeliculasActores == null) { return resultado; }
+            foreach (var actorPelicula in pelicula.PeliculasActores)
+            {
+                resultado.Add(new ActorPeliculaDetalleDto
+                {
+                    ActorId = actorPelicula.ActorId,
+                    Personaje= actorPelicula.Personaje,
+                    NombrePersona = actorPelicula.Actor.Nombre
+                });
+            }
+            return resultado;
         }
 
         private List<PeliculasActores> MapPeliculasActores(PeliculaCreacionDto peliculaCreacionDto, Pelicula pelicula)
