@@ -6,6 +6,9 @@ using WebApiCine.DTO;
 using WebApiCine.Entidades;
 using WebApiCine.Helpers;
 using WebApiCine.Servicios;
+//cargamos la libreria de linq dinamico
+using System.Linq.Dynamic;
+
 
 namespace WebApiCine.Controllers
 {
@@ -76,6 +79,7 @@ namespace WebApiCine.Controllers
         {
             ///ejecutamos la ejecucion diferida de la siguiente manera
             var peliculasQueryable = context.Peliculas.AsQueryable();
+
             if (!string.IsNullOrEmpty(filtroPeliculasDto.Titulo))
             {
                 peliculasQueryable = peliculasQueryable.Where(x => x.Titulo.Contains(filtroPeliculasDto.Titulo));
@@ -97,14 +101,17 @@ namespace WebApiCine.Controllers
             }
             if (!string.IsNullOrEmpty(filtroPeliculasDto.CampoOrdenar))
             {
+                //peliculasQueryable = peliculasQueryable.OrderBy("titulo ascending");
+
                 if (filtroPeliculasDto.CampoOrdenar == "titulo")
                 {
                     if (filtroPeliculasDto.OrdenAscendente)
                     {
                         peliculasQueryable = peliculasQueryable.OrderBy(x => x.Titulo);
                     }
-                    else {
-                        peliculasQueryable = peliculasQueryable.OrderByDescending(x=>x.Titulo);
+                    else
+                    {
+                        peliculasQueryable = peliculasQueryable.OrderByDescending(x => x.Titulo);
                     }
                 }
             }
