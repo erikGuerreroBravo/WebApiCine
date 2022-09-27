@@ -16,7 +16,7 @@ namespace WebApiCine.Controllers
         }
         protected async Task<List<TDTO>> Get<TEntidad, TDTO>() where TEntidad : class 
         {
-            var entidades = await context.Set<TEntidad>().ToListAsync();
+            var entidades = await context.Set<TEntidad>().AsNoTracking().ToListAsync();
             var datos = mapper.Map<List<TDTO>>(entidades);
             return datos;
         
