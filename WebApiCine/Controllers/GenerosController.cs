@@ -39,13 +39,14 @@ namespace WebApiCine.Controllers
         [HttpGet("{id:int}", Name="obtenerGenero")]
         public async Task<ActionResult<GeneroDto>> Get(int id)
         {
-            var entidad = await _context.Generos.FirstOrDefaultAsync(x => x.Id == id);
-            if (entidad == null)
-            {
-                return NotFound();
-            }
-            var dto = _mapper.Map<GeneroDto>(entidad);
-            return dto;
+            return await Get<Genero, GeneroDto>(id);
+            //var entidad = await _context.Generos.FirstOrDefaultAsync(x => x.Id == id);
+            //if (entidad == null)
+            //{
+            //    return NotFound();
+            //}
+            //var dto = _mapper.Map<GeneroDto>(entidad);
+            //return dto;
         }
 
         [HttpPost]
