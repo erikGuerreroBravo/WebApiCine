@@ -13,7 +13,10 @@ namespace WebApiCine.Controllers
             this.context = context;
             mapper = _mapper;
         }
-
+        protected async Task<List<TDTO>> Get<TEntidad, TDTO>() where TEntidad : class { 
+        
+        
+        }
         
     }
 }
