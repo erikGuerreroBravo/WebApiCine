@@ -52,11 +52,12 @@ namespace WebApiCine.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] GeneroCreacionDto creacionDto)
         {
-            var entidad  =_mapper.Map<GeneroDto>(creacionDto);
-            _context.Add(entidad);
-            await _context.SaveChangesAsync();
-            var generoDTO = _mapper.Map<GeneroDto>(entidad);
-            return new CreatedAtRouteResult("obtenerGenero",new { id=generoDTO.Id},generoDTO);
+            return Post<GeneroCreacionDto, Genero, GeneroDto>(creacionDto, "obtenerGenero");
+            //var entidad  =_mapper.Map<GeneroDto>(creacionDto);
+            //_context.Add(entidad);
+            //await _context.SaveChangesAsync();
+            //var generoDTO = _mapper.Map<GeneroDto>(entidad);
+            //return new CreatedAtRouteResult("obtenerGenero",new { id=generoDTO.Id},generoDTO);
         }
         [HttpPut]
         public async Task<ActionResult> Put(int id, [FromBody] GeneroCreacionDto creacionDto) 
