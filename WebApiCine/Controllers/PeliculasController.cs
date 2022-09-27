@@ -101,12 +101,17 @@ namespace WebApiCine.Controllers
             }
             if (!string.IsNullOrEmpty(filtroPeliculasDto.CampoOrdenar))
             {
-
                 var tipoOrden = filtroPeliculasDto.OrdenAscendente ? "ascending" : "descending";
-                peliculasQueryable = peliculasQueryable.OrderBy($"{filtroPeliculasDto.CampoOrdenar} {tipoOrden}");
-                
-                
+                try
+                {
+                    peliculasQueryable = peliculasQueryable.OrderBy($"{filtroPeliculasDto.CampoOrdenar} {tipoOrden}");
+                }
+                catch (Exception ex)
+                {
 
+                   
+                }
+                
                 if (filtroPeliculasDto.CampoOrdenar == "titulo")
                 {
                     if (filtroPeliculasDto.OrdenAscendente)
