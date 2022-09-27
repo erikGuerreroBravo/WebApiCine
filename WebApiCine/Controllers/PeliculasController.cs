@@ -21,11 +21,16 @@ namespace WebApiCine.Controllers
         private readonly IAlmacenadorArchivos almacenadorArchivos;
         //creacion del contenedor o carpeta de archivos donde se va a almacenar las fotos
         private readonly string contenedor = "peliculas";
-        public PeliculasController(ApplicationDbContext _context, IMapper _mapper, IAlmacenadorArchivos _almacenadorArchivos)
+        private readonly ILogger logger;
+
+
+        public PeliculasController(ApplicationDbContext _context, IMapper _mapper,
+            IAlmacenadorArchivos _almacenadorArchivos, ILogger<PeliculasController> _logger)
         {
             this.context = _context;
             this.mapper = _mapper;
             this.almacenadorArchivos = _almacenadorArchivos;
+            this.logger = _logger;
         }
         [HttpGet]
         public async Task<ActionResult<PeliculasIndexDto>> Get()
