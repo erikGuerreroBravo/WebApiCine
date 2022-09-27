@@ -35,10 +35,16 @@ namespace WebApiCine.Controllers
 
         }
 
-        protected async Task<ActionResult> Post<TCreacion, TEntidad, TLectura>(TCreacion creacionDto, string nombreRuta)where TEntidad : class, IId
+        protected async Task<ActionResult> Post<TCreacion, TEntidad, TLectura>(TCreacion creacionDto, string nombreRuta) 
+            where TEntidad : class, IId 
         {
-            
+            var entidad = mapper.Map<TEntidad>(creacionDto);
+            context.Add(entidad);
+            await context.SaveChangesAsync();
+            var dtoLectura = mapper.Map<TLectura>(entidad);
+            return new CreatedAtRouteResult(nombreRuta,new { id=entidad.Id});
         }
+        
 
     }
 }
