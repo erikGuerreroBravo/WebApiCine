@@ -21,6 +21,12 @@ namespace WebApiCine.Controllers
             return datos;
         
         }
-        
+
+        protected async Task<List<TDTO>> Get<TEntidad, TDTO>(int id) where TEntidad : class 
+        {
+
+        }
+
+
     }
 }
