@@ -103,7 +103,7 @@ namespace WebApiCine.Controllers
             {
 
                 var tipoOrden = filtroPeliculasDto.OrdenAscendente ? "ascending" : "descending";
-                peliculasQueryable = peliculasQueryable.OrderBy($"{filtroPeliculasDto.CampoOrdenar} ascending");
+                peliculasQueryable = peliculasQueryable.OrderBy($"{filtroPeliculasDto.CampoOrdenar} {tipoOrden}");
                 
                 
 
