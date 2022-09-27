@@ -61,8 +61,9 @@ namespace WebApiCine.Controllers
             {
                 return NotFound();
             }
-            context.Remove(new Genero() { Id = id });
+            context.Remove(new TEntidad() { Id = id });
             await context.SaveChangesAsync();
+            return NoContent();
         }
 
 
