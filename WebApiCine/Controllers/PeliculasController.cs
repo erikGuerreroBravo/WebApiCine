@@ -114,7 +114,7 @@ namespace WebApiCine.Controllers
                 catch (Exception ex)
                 {
 
-                   
+                    logger.LogError(ex.Message, ex);
                 }
                 
                 if (filtroPeliculasDto.CampoOrdenar == "titulo")
