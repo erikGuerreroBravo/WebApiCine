@@ -22,9 +22,9 @@ namespace WebApiCine.Controllers
         
         }
 
-        protected async Task<List<TDTO>> Get<TEntidad, TDTO>(int id) where TEntidad : class 
+        protected async Task<TDTO> Get<TEntidad, TDTO>(int id) where TEntidad : class 
         {
-
+            var entidad = await context.Set<TEntidad>().AsNoTracking().FirstOrDefaultAsync();
         }
 
 
