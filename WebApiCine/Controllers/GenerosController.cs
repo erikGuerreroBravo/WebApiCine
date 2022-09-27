@@ -10,11 +10,11 @@ namespace WebApiCine.Controllers
 {
     [ApiController]
     [Route("api/generos")]
-    public class GenerosController: ControllerBase
+    public class GenerosController: CustomBaseController
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
-        public GenerosController(ApplicationDbContext context, IMapper mapper)
+        public GenerosController(ApplicationDbContext context, IMapper mapper): base(context,mapper)
         {
             this._context = context;
             this._mapper = mapper;
