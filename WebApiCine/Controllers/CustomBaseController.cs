@@ -44,7 +44,11 @@ namespace WebApiCine.Controllers
             var dtoLectura = mapper.Map<TLectura>(entidad);
             return new CreatedAtRouteResult(nombreRuta,new { id=entidad.Id}, dtoLectura);
         }
-        
+
+        protected async Task<ActionResult> Put<TCreacion, TEntidad>(int id, TCreacion creacionDto) where TEntidad : class, IId
+        {
+            
+        }
 
     }
 }
