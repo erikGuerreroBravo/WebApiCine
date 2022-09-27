@@ -52,7 +52,7 @@ namespace WebApiCine.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] GeneroCreacionDto creacionDto)
         {
-            return Post<GeneroCreacionDto, Genero, GeneroDto>(creacionDto, "obtenerGenero");
+            return await Post<GeneroCreacionDto, Genero, GeneroDto>(creacionDto, "obtenerGenero");
             //var entidad  =_mapper.Map<GeneroDto>(creacionDto);
             //_context.Add(entidad);
             //await _context.SaveChangesAsync();
