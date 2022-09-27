@@ -5,6 +5,9 @@ using WebApiCine.Entidades;
 
 namespace WebApiCine.Controllers
 {
+    /// <summary>
+    /// Controlador base para realziar las operaciones base de un crud
+    /// </summary>
     public class CustomBaseController : ControllerBase
     {
         private readonly ApplicationDbContext context;
