@@ -56,7 +56,7 @@ namespace WebApiCine.Controllers
 
         protected async Task<ActionResult> Delete<TEntidad>(int id) where TEntidad : class, IId, new()
         {
-            var existe = await context.Generos.AnyAsync(x => x.Id == id);
+            var existe = await context.Set<TEntidad>().AnyAsync(x => x.Id == id);
             if (!existe)
             {
                 return NotFound();
