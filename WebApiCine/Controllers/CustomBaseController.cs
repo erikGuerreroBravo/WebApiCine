@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApiCine.Controllers
 {
@@ -13,8 +14,11 @@ namespace WebApiCine.Controllers
             this.context = context;
             mapper = _mapper;
         }
-        protected async Task<List<TDTO>> Get<TEntidad, TDTO>() where TEntidad : class { 
-        
+        protected async Task<List<TDTO>> Get<TEntidad, TDTO>() where TEntidad : class 
+        {
+            var entidades = await context.Set<TEntidad>().ToListAsync();
+            var datos = mapper.Map<List<TDTO>>(entidades);
+            return datos;
         
         }
         
