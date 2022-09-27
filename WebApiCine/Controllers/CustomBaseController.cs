@@ -13,6 +13,11 @@ namespace WebApiCine.Controllers
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
 
+        /// <summary>
+        /// constructor del controlador
+        /// </summary>
+        /// <param name="context">el contexto de los datos</param>
+        /// <param name="_mapper">el mapeador de las entidades</param>
         public CustomBaseController(ApplicationDbContext context, IMapper _mapper)
         {
             this.context = context;
