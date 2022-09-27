@@ -47,7 +47,11 @@ namespace WebApiCine.Controllers
 
         protected async Task<ActionResult> Put<TCreacion, TEntidad>(int id, TCreacion creacionDto) where TEntidad : class, IId
         {
-            
+            var entidad = mapper.Map<Genero>(creacionDto);
+            entidad.Id = id;
+            context.Entry(entidad).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+            return NoContent();
         }
 
     }
