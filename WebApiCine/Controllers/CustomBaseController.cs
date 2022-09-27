@@ -23,9 +23,16 @@ namespace WebApiCine.Controllers
         
         }
 
-        protected async Task<TDTO> Get<TEntidad, TDTO>(int id) where TEntidad : class ,IId
+        protected async Task<ActionResult<TDTO>> Get<TEntidad, TDTO>(int id) where TEntidad : class ,IId
         {
             var entidad = await context.Set<TEntidad>().AsNoTracking().FirstOrDefaultAsync(x=> x.Id == id);
+            
+            if (entidad == null)
+            {
+                return NotFound();
+            }
+            return mapper.Map<TDTO>(entidad);
+
         }
 
 
