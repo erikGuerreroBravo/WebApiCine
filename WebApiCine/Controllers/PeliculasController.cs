@@ -101,7 +101,7 @@ namespace WebApiCine.Controllers
             }
             if (!string.IsNullOrEmpty(filtroPeliculasDto.CampoOrdenar))
             {
-                //peliculasQueryable = peliculasQueryable.OrderBy("titulo ascending");
+                peliculasQueryable = peliculasQueryable.OrderBy("titulo ascending");
                 
                 
 
