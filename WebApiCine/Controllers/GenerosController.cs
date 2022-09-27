@@ -16,8 +16,8 @@ namespace WebApiCine.Controllers
         private readonly IMapper _mapper;
         public GenerosController(ApplicationDbContext context, IMapper mapper): base(context,mapper)
         {
-            this._context = context;
-            this._mapper = mapper;
+            //this._context = context;
+            //this._mapper = mapper;
         }
 
         [HttpGet]
