@@ -62,11 +62,12 @@ namespace WebApiCine.Controllers
         [HttpPut]
         public async Task<ActionResult> Put(int id, [FromBody] GeneroCreacionDto creacionDto) 
         {
-            var entidad = _mapper.Map<Genero>(creacionDto);
-            entidad.Id = id;
-            _context.Entry(entidad).State= EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return NoContent();
+            return await Put<GeneroCreacionDto, Genero>(id, creacionDto);
+            //var entidad = _mapper.Map<Genero>(creacionDto);
+            //entidad.Id = id;
+            //_context.Entry(entidad).State= EntityState.Modified;
+            //await _context.SaveChangesAsync();
+            //return NoContent();
         }
 
 
