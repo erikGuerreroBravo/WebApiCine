@@ -42,7 +42,7 @@ namespace WebApiCine.Controllers
             context.Add(entidad);
             await context.SaveChangesAsync();
             var dtoLectura = mapper.Map<TLectura>(entidad);
-            return new CreatedAtRouteResult(nombreRuta,new { id=entidad.Id});
+            return new CreatedAtRouteResult(nombreRuta,new { id=entidad.Id}, dtoLectura);
         }
         
 
