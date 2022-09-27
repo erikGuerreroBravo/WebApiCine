@@ -54,5 +54,9 @@ namespace WebApiCine.Controllers
             return NoContent();
         }
 
+        protected async Task<ActionResult> Delete<TEntidad>(int id) where TEntidad : class, IId, new()
+        { }
+
+
     }
 }
