@@ -23,6 +23,12 @@ namespace WebApiCine.Controllers
         
         }
 
+        protected async Task<List<TDTO>> Get<TEntidad, TDTO>(PaginacionDTO paginacionDTO) where TEntidad : class
+        {
+            //se declara el metodo Get de paginacion
+        }
+
+
         protected async Task<ActionResult<TDTO>> Get<TEntidad, TDTO>(int id) where TEntidad : class ,IId
         {
             var entidad = await context.Set<TEntidad>().AsNoTracking().FirstOrDefaultAsync(x=> x.Id == id);
