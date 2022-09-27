@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebApiCine.Entidades;
 
 namespace WebApiCine.Controllers
 {
@@ -22,7 +23,7 @@ namespace WebApiCine.Controllers
         
         }
 
-        protected async Task<TDTO> Get<TEntidad, TDTO>(int id) where TEntidad : class 
+        protected async Task<TDTO> Get<TEntidad, TDTO>(int id) where TEntidad : class ,IId
         {
             var entidad = await context.Set<TEntidad>().AsNoTracking().FirstOrDefaultAsync();
         }
