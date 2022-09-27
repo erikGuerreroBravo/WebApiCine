@@ -23,9 +23,11 @@ namespace WebApiCine.Controllers
         [HttpGet]
         public async Task<ActionResult<List<GeneroDto>>> Get()
         {
-            var entidades = await _context.Generos.ToListAsync();
-            var generos= _mapper.Map<List<GeneroDto>>(entidades);
-            return generos;
+
+            return await Get<Genero, GeneroDto>();
+            //var entidades = await _context.Generos.ToListAsync();
+            //var generos= _mapper.Map<List<GeneroDto>>(entidades);
+            //return generos;
         }
 
         [HttpGet]
