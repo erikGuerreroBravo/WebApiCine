@@ -35,6 +35,10 @@ namespace WebApiCine.Controllers
 
         }
 
+        protected async Task<ActionResult> Post<TCreacion, TEntidad, TLectura>(TCreacion creacionDto, string nombreRuta)
+        {
+            
+        }
 
     }
 }
