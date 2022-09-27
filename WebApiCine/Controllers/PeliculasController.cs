@@ -7,7 +7,7 @@ using WebApiCine.Entidades;
 using WebApiCine.Helpers;
 using WebApiCine.Servicios;
 //cargamos la libreria de linq dinamico
-using System.Linq.Dynamic;
+using System.Linq.Dynamic.Core;
 
 
 namespace WebApiCine.Controllers
@@ -117,17 +117,17 @@ namespace WebApiCine.Controllers
                     logger.LogError(ex.Message, ex);
                 }
                 
-                if (filtroPeliculasDto.CampoOrdenar == "titulo")
-                {
-                    if (filtroPeliculasDto.OrdenAscendente)
-                    {
-                        peliculasQueryable = peliculasQueryable.OrderBy(x => x.Titulo);
-                    }
-                    else
-                    {
-                        peliculasQueryable = peliculasQueryable.OrderByDescending(x => x.Titulo);
-                    }
-                }
+                //if (filtroPeliculasDto.CampoOrdenar == "titulo")
+                //{
+                //    if (filtroPeliculasDto.OrdenAscendente)
+                //    {
+                //        peliculasQueryable = peliculasQueryable.OrderBy(x => x.Titulo);
+                //    }
+                //    else
+                //    {
+                //        peliculasQueryable = peliculasQueryable.OrderByDescending(x => x.Titulo);
+                //    }
+                //}
             }
 
             await HttpContext.InsertarParametrosPaginacion(peliculasQueryable, filtroPeliculasDto.CantidadRegistrosPorPagina);
