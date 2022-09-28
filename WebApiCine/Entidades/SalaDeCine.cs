@@ -8,5 +8,7 @@ namespace WebApiCine.Entidades
         [Required]
         [StringLength(120)]
         public string Nombre { get; set; }
+
+        public List<PeliculasSalaDeCine> PeliculasSalaDeCines { get; set; }
     }
 }
