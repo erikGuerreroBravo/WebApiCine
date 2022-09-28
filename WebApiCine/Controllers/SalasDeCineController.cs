@@ -5,8 +5,12 @@ using WebApiCine.Entidades;
 
 namespace WebApiCine.Controllers
 {
+    /// <summary>
+    /// Este controlador es acerca de salas de cine
+    /// </summary>
     [Route("api/SalasDeCine")]
     [ApiController]
+    
     public class SalasDeCineController : CustomBaseController
     {
         private readonly ApplicationDbContext context;
