@@ -101,6 +101,13 @@ namespace WebApiCine.Controllers
             var entidadDTO = mapper.Map<TDTO>(entidadDB);
             patchDocument.ApplyTo(entidadDTO,ModelState);
             var esValido = TryValidateModel(entidadDTO);
+            if (!esValido)
+            {
+                return BadRequest(ModelState);
+            }
+            mapper.Map(entidadDTO,entidadDB);
+            await context.SaveChangesAsync();
+            return NoContent();
 
         }
 
