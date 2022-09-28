@@ -22,6 +22,12 @@ namespace WebApiCine.Controllers
         {
             return await Get<SalaDeCine, SalaDeCineDto>();
         }
+        [HttpGet("{id:int}", Name = "obtenerSalaDeCine")]
+        public async Task<ActionResult<SalaDeCineDto>> Get(int id) 
+        {
+            return await Get<SalaDeCine, SalaDeCineDto>(id);
+        }
+
 
     }
 }
