@@ -37,12 +37,13 @@ namespace WebApiCine.Controllers
         [HttpGet("{id}", Name = "obtenerActor")]
         public async Task<ActionResult<ActorDto>> Get(int id)
         {
-            var entidad = await this.context.Actores.FirstOrDefaultAsync(x => x.Id == id);
-            if (entidad == null)
-            {
-                return NotFound();
-            }
-            return this.mapper.Map<ActorDto>(entidad);
+            //var entidad = await this.context.Actores.FirstOrDefaultAsync(x => x.Id == id);
+            //if (entidad == null)
+            //{
+            //    return NotFound();
+            //}
+            //return this.mapper.Map<ActorDto>(entidad);
+            return await Get<Actor, ActorDto>(id);
         }
         [HttpPost]
         public async Task<ActionResult> Post([FromForm] ActorCreacionDto actorCreacionDto) 
