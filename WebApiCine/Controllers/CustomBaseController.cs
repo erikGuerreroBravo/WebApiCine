@@ -86,10 +86,18 @@ namespace WebApiCine.Controllers
             return NoContent();
         }
 
-        protected async Task<ActionResult> Patch<TEntidad, TDTO>(int id, JsonPatchDocument<TDTO> patchDocument) 
-            where TDTO :class where TEntidad: class,IId
+        protected async Task<ActionResult> Patch<TEntidad, TDTO>(int id, JsonPatchDocument<TDTO> patchDocument)
+            where TDTO : class where TEntidad : class, IId
         {
-
+            if (patchDocument == null)
+            {
+                return BadRequest();
+            }
+            var entidadDB = await context.Set<TEntidad>().FirstOrDefaultAsync(x=> x.Id == id);
+            if (entidadDB == null)
+            {
+                return NotFound();
+            }
         }
 
 
