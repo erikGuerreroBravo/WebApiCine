@@ -19,6 +19,9 @@ namespace WebApiCine
             modelBuilder.Entity<PeliculasActores>().HasKey(x => new { x.ActorId, x.PeliculasId });
             //establecemos 
             modelBuilder.Entity<PeliculasGeneros>().HasKey(x => new { x.GeneroId, x.PeliculaId });
+            //establecemos las llaves primarias de la entidad
+            modelBuilder.Entity<PeliculasSalaDeCine>().HasKey(x => new { x.PeliculaId, x.SalaDeCineId });
+
             base.OnModelCreating(modelBuilder);
             //cargar los datos en memoria o en consulta.
         }
