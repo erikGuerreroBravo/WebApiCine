@@ -98,6 +98,10 @@ namespace WebApiCine.Controllers
             {
                 return NotFound();
             }
+            var entidadDTO = mapper.Map<TDTO>(entidadDB);
+            patchDocument.ApplyTo(entidadDTO,ModelState);
+            var esValido = TryValidateModel(entidadDTO);
+
         }
 
 
