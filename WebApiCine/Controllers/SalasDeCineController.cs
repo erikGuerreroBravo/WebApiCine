@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using WebApiCine.DTO;
+using WebApiCine.Entidades;
 
 namespace WebApiCine.Controllers
 {
@@ -11,7 +13,15 @@ namespace WebApiCine.Controllers
         private readonly IMapper mapper;
         public SalasDeCineController(ApplicationDbContext _context, IMapper _mapper): base(_context,_mapper)
         {
-
+            this.context = _context;
+            this.mapper = _mapper;
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<SalaDeCineDto>>> Get() 
+        {
+            return await Get<SalaDeCine, SalaDeCineDto>();
+        }
+
     }
 }
