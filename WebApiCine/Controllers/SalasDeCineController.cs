@@ -27,6 +27,11 @@ namespace WebApiCine.Controllers
         {
             return await Get<SalaDeCine, SalaDeCineDto>(id);
         }
+        [HttpPost]
+        public async Task<ActionResult> Post([FromBody] SalaDeCineCreacionDto salaDeCineCreacionDto)
+        {
+            return await Post<SalaDeCineCreacionDto, SalaDeCine, SalaDeCineDto>(salaDeCineCreacionDto, "obtenerSalaDeCine");
+        }
 
 
     }
