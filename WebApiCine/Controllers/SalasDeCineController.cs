@@ -1,7 +1,14 @@
-﻿namespace WebApiCine.Controllers
-{
+﻿using Microsoft.AspNetCore.Mvc;
 
-    public class SalasDeCineController
+namespace WebApiCine.Controllers
+{
+    [Route("api/SalasDeCine")]
+    [ApiController]
+    public class SalasDeCineController: CustomBaseController
     {
+        public SalasDeCineController()
+        {
+
+        }
     }
 }
