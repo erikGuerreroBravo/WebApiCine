@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApiCine.DTO;
@@ -42,7 +43,6 @@ namespace WebApiCine.Controllers
 
         }
 
-
         protected async Task<ActionResult<TDTO>> Get<TEntidad, TDTO>(int id) where TEntidad : class ,IId
         {
             var entidad = await context.Set<TEntidad>().AsNoTracking().FirstOrDefaultAsync(x=> x.Id == id);
@@ -84,6 +84,12 @@ namespace WebApiCine.Controllers
             context.Remove(new TEntidad() { Id = id });
             await context.SaveChangesAsync();
             return NoContent();
+        }
+
+        protected async Task<ActionResult> Patch<TEntidad, TDTO>(int id, JsonPatchDocument<TDTO> patchDocument) 
+            where TDTO :class where TEntidad: class,IId
+        {
+
         }
 
 
