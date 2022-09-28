@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebApiCine.DTO;
 using WebApiCine.Entidades;
+using WebApiCine.Helpers;
 
 namespace WebApiCine.Controllers
 {
@@ -31,9 +33,13 @@ namespace WebApiCine.Controllers
         
         }
 
-        protected async Task<List<TDTO>> Get<TEntidad, TDTO>(PaginacionDTO paginacionDTO) where TEntidad : class
+        protected async Task<List<TDTO>> Get<TEntidad, TDTO>(PaginacionDto paginacionDTO) where TEntidad : class
         {
-            //se declara el metodo Get de paginacion
+            var queryable = context.Set<TEntidad>().AsNoTracking().AsQueryable();
+            await HttpContext.InsertarParametrosPaginacion(queryable, paginacionDTO.CantidadRegistrosPorPagina);
+            var entidades = await queryable.Paginar(paginacionDTO).ToListAsync();
+            return mapper.Map<List<TDTO>>(entidades);
+
         }
 
 
