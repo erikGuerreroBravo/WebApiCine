@@ -191,25 +191,26 @@ namespace WebApiCine.Controllers
         [HttpPatch("{id}")]
         public async Task<ActionResult> Patch(int id, [FromBody] JsonPatchDocument<PeliculaPatchDto> patchDocument)
         {
-            if (patchDocument == null)
-            {
-                return BadRequest();
-            }
-            var peliculaDB = context.Peliculas.FirstOrDefaultAsync(x => x.Id == id);
-            if (peliculaDB == null)
-            {
-                return NotFound();
-            }
-            var peliculaDto = mapper.Map<PeliculaPatchDto>(peliculaDB);
-            patchDocument.ApplyTo(peliculaDto, ModelState);
-            var esValido = TryValidateModel(peliculaDto);
-            if (!esValido)
-            {
-                return BadRequest(ModelState);
-            }
-            mapper.Map(peliculaDto, peliculaDB);  
-            await context.SaveChangesAsync();
-            return NoContent();
+            //    if (patchDocument == null)
+            //    {
+            //        return BadRequest();
+            //    }
+            //    var peliculaDB = context.Peliculas.FirstOrDefaultAsync(x => x.Id == id);
+            //    if (peliculaDB == null)
+            //    {
+            //        return NotFound();
+            //    }
+            //    var peliculaDto = mapper.Map<PeliculaPatchDto>(peliculaDB);
+            //    patchDocument.ApplyTo(peliculaDto, ModelState);
+            //    var esValido = TryValidateModel(peliculaDto);
+            //    if (!esValido)
+            //    {
+            //        return BadRequest(ModelState);
+            //    }
+            //    mapper.Map(peliculaDto, peliculaDB);  
+            //    await context.SaveChangesAsync();
+            //    return NoContent();
+            return await Patch<Pelicula, PeliculaPatchDto>(id,patchDocument);
         }
 
 
