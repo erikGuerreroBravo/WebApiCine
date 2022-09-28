@@ -37,5 +37,11 @@ namespace WebApiCine.Controllers
         {
             return await Put<SalaDeCineCreacionDto, SalaDeCine>(id, salaDeCineCreacionDto);
         }
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            return await Delete(id);
+        }
+
     }
 }
