@@ -113,15 +113,15 @@ namespace WebApiCine.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var existe = await context.Actores.AnyAsync(x => x.Id == id);
-            if (!existe)
-            {
-                return NotFound();
-            }
-            context.Remove(new Actor() { Id = id });
-            await context.SaveChangesAsync();
-            return NoContent();
-
+            //var existe = await context.Actores.AnyAsync(x => x.Id == id);
+            //if (!existe)
+            //{
+            //    return NotFound();
+            //}
+            //context.Remove(new Actor() { Id = id });
+            //await context.SaveChangesAsync();
+            //return NoContent();
+            return await Delete<Actor>(id);
         }
 
 
