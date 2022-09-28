@@ -10,6 +10,9 @@ using WebApiCine.Servicios;
 
 namespace WebApiCine.Controllers
 {
+    /// <summary>
+    /// Controlador del tipo actores controller
+    /// </summary>
     [ApiController]
     [Route("api/actores")]
     public class ActoresController : CustomBaseController
