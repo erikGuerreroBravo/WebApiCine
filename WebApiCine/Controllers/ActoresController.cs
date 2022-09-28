@@ -12,13 +12,13 @@ namespace WebApiCine.Controllers
 {
     [ApiController]
     [Route("api/actores")]
-    public class ActoresController : ControllerBase
+    public class ActoresController : CustomBaseController
     {
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
         private readonly IAlmacenadorArchivos almacenadorArchivos;
         private readonly string contenedor = "actores";
-        public ActoresController(ApplicationDbContext _context, IMapper _mapper, IAlmacenadorArchivos _almacenadorArchivos)
+        public ActoresController(ApplicationDbContext _context, IMapper _mapper, IAlmacenadorArchivos _almacenadorArchivos):base(context, mapper)
         {
             this.context = _context;
             this.mapper = _mapper;
@@ -27,10 +27,11 @@ namespace WebApiCine.Controllers
         [HttpGet]
         public async Task<ActionResult<List<ActorDto>>> Get([FromQuery] PaginacionDto paginacionDto) {
             /*mandamos traer la consulta de todos los actores*/
-            var queryable = context.Actores.AsQueryable();
-            await HttpContext.InsertarParametrosPaginacion(queryable, paginacionDto.CantidadRegistrosPorPagina);
-            var actores = await this.context.Actores.Paginar(paginacionDto).ToListAsync();
-            return mapper.Map<List<ActorDto>>(actores);
+            //var queryable = context.Actores.AsQueryable();
+            //await HttpContext.InsertarParametrosPaginacion(queryable, paginacionDto.CantidadRegistrosPorPagina);
+            //var actores = await this.context.Actores.Paginar(paginacionDto).ToListAsync();
+            //return mapper.Map<List<ActorDto>>(actores);
+            return await Get<Actor, ActorDto>(paginacionDto);
         }
 
         [HttpGet("{id}", Name = "obtenerActor")]
