@@ -14,7 +14,7 @@ namespace WebApiCine.Controllers
 {
     [ApiController]
     [Route("api/peliculas")]
-    public class PeliculasController : ControllerBase
+    public class PeliculasController : CustomBaseController
     {
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
@@ -25,7 +25,7 @@ namespace WebApiCine.Controllers
 
 
         public PeliculasController(ApplicationDbContext _context, IMapper _mapper,
-            IAlmacenadorArchivos _almacenadorArchivos, ILogger<PeliculasController> _logger)
+            IAlmacenadorArchivos _almacenadorArchivos, ILogger<PeliculasController> _logger): base(_context,_mapper)
         {
             this.context = _context;
             this.mapper = _mapper;

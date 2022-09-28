@@ -18,7 +18,7 @@ namespace WebApiCine.Controllers
         private readonly IMapper mapper;
         private readonly IAlmacenadorArchivos almacenadorArchivos;
         private readonly string contenedor = "actores";
-        public ActoresController(ApplicationDbContext _context, IMapper _mapper, IAlmacenadorArchivos _almacenadorArchivos):base(context, mapper)
+        public ActoresController(ApplicationDbContext _context, IMapper _mapper, IAlmacenadorArchivos _almacenadorArchivos):base(_context, _mapper)
         {
             this.context = _context;
             this.mapper = _mapper;
