@@ -12,6 +12,9 @@ using System.Linq.Dynamic.Core;
 
 namespace WebApiCine.Controllers
 {
+    /// <summary>
+    /// Se agrega el controlador peliculas
+    /// </summary>
     [ApiController]
     [Route("api/peliculas")]
     public class PeliculasController : CustomBaseController
