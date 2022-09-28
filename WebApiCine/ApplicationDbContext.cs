@@ -32,6 +32,7 @@ namespace WebApiCine
 
         public DbSet<PeliculasActores> PeliculasActores { get; set; }
         public DbSet<PeliculasGeneros> PeliculasGeneros { get; set; }
-
+        public DbSet<SalaDeCine> SalasDeCine { get; set; }
+        public DbSet<PeliculasSalaDeCine> PeliculasSalasDeCines { get; set; }
     }
 }
